@@ -88,13 +88,13 @@ rasterLine (Line p0 p1)
 _rLx :: Line -> [Point]
 _rLx (Line (Point x0 y0 _ _) (Point x1 y1 _ _)) =
     L.zipWith4 (Point) [x0..x1] ys (repeat 0) (repeat 1)
-    where   ys = map (+y0) . map (`quot` (2* abs dx)) . tail $ [negate dy, dy..]
+    where   ys = map ((+y0) . (`quot` (2* abs dx))) . tail $ [negate dy, dy..]
             dy = y1 - y0
             dx = x1 - x0
 
 _rLy :: Line -> [Point]
 _rLy (Line (Point x0 y0 _ _) (Point x1 y1 _ _)) =
     L.zipWith4 (Point) xs [y0..y1] (repeat 0) (repeat 1)
-    where   xs = map (+x0) . map (`quot` (2* abs dy)) . tail $ [negate dx, dx..]
+    where   xs = map ((+x0) . (`quot` (2* abs dy))) . tail $ [negate dx, dx..]
             dy = y1 - y0
             dx = x1 - x0
